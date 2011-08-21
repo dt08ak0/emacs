@@ -154,3 +154,7 @@
   (newline-and-indent)  (newline-and-indent))
 
 (add-hook 'after-init-hook 'emacs-reloaded)  
+
+;; icicles
+(require 'icicles)
+(icy-mode 1)
