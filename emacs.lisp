@@ -1,13 +1,13 @@
 (add-to-list 'load-path "~/.emacs.d/")
-;windmove
-;(require 'framemove)
-;(framemove-default-keybindings) ;; default prefix is Meta
+					;windmove
+					;(require 'framemove)
+					;(framemove-default-keybindings) ;; default prefix is Meta
 ;;didn't work
 
 (custom-set-variables
-(menu-bar-mode)
-  ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
-  ;; Your init file should contain only one such instance.
+ (menu-bar-mode)
+ ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
+ ;; Your init file should contain only one such instance.
  '(case-fold-search t)
  '(current-language-environment "Latin-1")
  '(default-input-method "latin-1-prefix")
@@ -20,8 +20,8 @@
  '(inhibit-startup-screen t)
  '(tool-bar-mode nil nil (tool-bar)))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
-  ;; Your init file should contain only one such instance.
+ ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
+ ;; Your init file should contain only one such instance.
  )
 
 ;; ANSI shell
@@ -32,18 +32,18 @@
 (require 'ibuffer)
 
 ;; Color-themes
-;(require 'color-theme-autoload "color-theme-autoloads")
+					;(require 'color-theme-autoload "color-theme-autoloads")
 (require 'color-theme)
 (color-theme-initialize)
-;(color-theme-tty)
-;(color-theme-classic)
+					;(color-theme-tty)
+					;(color-theme-classic)
 (color-theme-arjen)
 
 ;; Lethe, Linh, Resolve, Robin Hood, TTY Dark
 
 ;; MUD-client
-;(require 'lpmud)
-;(autoload 'lpmud "lpmud" "Run LP-MUD in Emacs" t)
+					;(require 'lpmud)
+					;(autoload 'lpmud "lpmud" "Run LP-MUD in Emacs" t)
 (autoload 'mu-open "mu" "Play on MUSHes and MUDs" t)
 (add-hook 'mu-connection-mode-hook 'ansi-color-for-comint-mode-on)
 
@@ -65,7 +65,7 @@
 ;; 	       (erc-message "PRIVMSG" "Q@CServe.quakenet.org AUTH vodnik CSk4RzbVB2")))))
 ;; ;	      ((string-match "efnet\\.port80\\.se" SERVER)
 ;; ;	       (())))))
-	 
+
 
 ;; ;; and then auto join channels
 ;; (require 'erc-join)
@@ -128,10 +128,10 @@
 (load-library "nnimap")
 (load-library "starttls")
 (setq gnus-select-method '(nnimap "imap.gmail.com"
-           (nnimap-address "imap.gmail.com")
-           (nnimap-server-port 993)
-           (nnimap-authinfo-file "~/.authinfo")
-           (nnimap-stream ssl)))
+				  (nnimap-address "imap.gmail.com")
+				  (nnimap-server-port 993)
+				  (nnimap-authinfo-file "~/.authinfo")
+				  (nnimap-stream ssl)))
 
 (setq smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
       smtpmail-smtp-server "smtp.gmail.com"
@@ -140,9 +140,9 @@
       message-send-mail-function 'smtpmail-send-it
       smtpmail-smtp-service 587
       smtpmail-auth-credentials '(("smtp.gmail.com"
-       587
-       "davor@davor.se"
-       )))
+				   587
+				   "davor@davor.se"
+				   )))
 (add-hook 'gnus-topic-mode-hook 'gnus-topic-mode)
 ;;
 (put 'upcase-region 'disabled nil)
@@ -166,13 +166,13 @@
 
 ;; ical-importer
 ;; Get calendar info from google calendar into planner.
-;(require 'planner-ical-import)
-; (setq planner-ical-external-calendars
-;       '("http://www.google.com/calendar/ical/davorb%40gmail.com/private-1629fcb0d5c1292a4965dc0593c3f3be/basic.ics"))
+					;(require 'planner-ical-import)
+;; (setq planner-ical-external-calendars
+;;       '("http://www.google.com/calendar/ical/davorb%40gmail.com/private-1629fcb0d5c1292a4965dc0593c3f3be/basic.ics"))
 
-;disable backup
+;;disable backup
 (setq backup-inhibited t)
-;disable auto save
+;;disable auto save
 (setq auto-save-default nil)
 
 ;;window
@@ -188,3 +188,48 @@
 ;; http://nschum.de/src/emacs/window-numbering-mode/
 (require 'window-numbering)
 (window-numbering-mode 1)
+
+;; enter the debugger each time an error is found
+(setq debug-on-error t)
+
+;; Preserve hard links to the file you’re editing (this is especially important if you edit system files).
+(setq backup-by-copying-when-linked t)
+
+;; Preserve the owner and group of the file you’re editing (this is especially important if you edit files as root).
+(setq backup-by-copying-when-mismatch t)
+
+;;Always indent using spaces, never tabs (See NoTabs)
+(setq-default indent-tabs-mode nil)
+
+;;Include current buffer name in the title bar
+(setq frame-title-format "%b - emacs")
+
+;;Emacs is a text editor, make sure your text files end in a newline
+;;this will make emacs ask each time it's needed
+(setq require-final-newline 'query)
+
+;;Play nice with other version control users
+(setq vc-initial-comment t
+      vc-diff-switches diff-switches)
+
+;;Never byte-compile your InitFile by hand again
+(defun autocompile nil
+  "compile itself if ~/.emacs"
+  (interactive)
+  (require 'bytecomp)
+  (if (string= (buffer-file-name) (expand-file-name (concat default-directory ".emacs")))
+      (byte-compile-file (buffer-file-name))))
+(add-hook 'after-save-hook 'autocompile)
+
+
+;;A fun startup message, somewhat reminiscent of “The Matrix: Reloaded”
+
+(defconst animate-n-steps 3) 
+(defun emacs-reloaded ()
+  (animate-string (concat ";; Initialization successful, welcome to "
+			  (substring (emacs-version) 0 16)
+			  ".")
+		  0 0)
+  (newline-and-indent)  (newline-and-indent))
+
+(add-hook 'after-init-hook 'emacs-reloaded)  
