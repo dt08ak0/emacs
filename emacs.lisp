@@ -3,7 +3,6 @@
 					;(require 'framemove)
 					;(framemove-default-keybindings) ;; default prefix is Meta
 ;;didn't work
-
 (custom-set-variables
  (menu-bar-mode)
  ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
@@ -158,3 +157,6 @@
 ;; icicles
 (require 'icicles)
 (icy-mode 1)
+
+;;  let M-- be the same key as M-/
+(define-key key-translation-map (kbd "M--") (kbd "M-/"))
