@@ -32,12 +32,13 @@
 
 ;; Color-themes
 					;(require 'color-theme-autoload "color-theme-autoloads")
-(require 'color-theme)
-(color-theme-initialize)
+;(require 'color-theme)
+;(color-theme-initialize)
 					;(color-theme-tty)
 					;(color-theme-classic)
 ;;arjen for consoles
 ;;scintilla for windowed
+(color-theme-initialize)
 (color-theme-scintilla)
 ;(color-theme-arjen)
 ;; Lethe, Linh, Resolve, Robin Hood, TTY Dark
@@ -156,11 +157,12 @@
 (add-hook 'after-init-hook 'emacs-reloaded)  
 
 ;; icicles
-(require 'icicles)
-(icy-mode 1)
+;(require 'icicles)
+;(icy-mode 1)
 
 ;;  let M-- be the same key as M-/
 (define-key key-translation-map (kbd "M--") (kbd "M-/"))
+
 
 ;;doremi
 ;;window resizing
@@ -169,3 +171,8 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+
+;; bind F9 to compile
+;(add-hook 'compilation-mode-hook 'my-compilation-hook)
+(global-set-key [f9] 'compile)
+
