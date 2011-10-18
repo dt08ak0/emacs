@@ -38,8 +38,8 @@
 					;(color-theme-classic)
 ;;arjen for consoles
 ;;scintilla for windowed
-;(color-theme-scintilla)
-(color-theme-arjen)
+(color-theme-scintilla)
+;(color-theme-arjen)
 ;; Lethe, Linh, Resolve, Robin Hood, TTY Dark
 
 ;; gnus gmail imap info
