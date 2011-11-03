@@ -32,8 +32,8 @@
 
 ;; Color-themes
 					;(require 'color-theme-autoload "color-theme-autoloads")
-;(require 'color-theme)
-;(color-theme-initialize)
+(require 'color-theme)
+(color-theme-initialize)
 					;(color-theme-tty)
 					;(color-theme-classic)
 ;;arjen for consoles
