@@ -38,8 +38,9 @@
 					;(color-theme-classic)
 ;;arjen for consoles
 ;;scintilla for windowed
-;(color-theme-scintilla)
-(color-theme-arjen)
+(color-theme-initialize)
+(color-theme-scintilla)
+;(color-theme-arjen)
 ;; Lethe, Linh, Resolve, Robin Hood, TTY Dark
 
 ;; gnus gmail imap info
@@ -162,6 +163,16 @@
 ;;  let M-- be the same key as M-/
 (define-key key-translation-map (kbd "M--") (kbd "M-/"))
 
+
+;;doremi
+;;window resizing
+(require 'doremi)
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+
 ;; bind F9 to compile
 ;(add-hook 'compilation-mode-hook 'my-compilation-hook)
 (global-set-key [f9] 'compile)
+
